@@ -4,6 +4,7 @@ import cv2 as cv
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 from imblearn.metrics import classification_report_imbalanced
+from tqdm import tqdm
 
 np.random.seed(42)
 
@@ -22,11 +23,13 @@ def load_set_of_images(number, type="dr"):    # type: {"dr", "g", "h"}
     return img, mask, manual
 
 
-def load_all_images():
+def load_all_images(n_sets=15):
+    n_sets = min(n_sets, 15)
+    
     X_images = []
     y_images = []
     
-    for img_index in range(1, 16):
+    for img_index in tqdm(range(1, n_sets+1), desc="Loading sets ('dr', 'g', 'h') of images"):
         for img_type in ["dr", "g", "h"]:
             img, mask, manual = load_set_of_images(img_index, img_type)
             X_images.append((img, mask))
@@ -42,9 +45,13 @@ def normalize_image(image):
     return (image - min_val)/(max_val - min_val)
 
 
-def print_metrics(manual, result):
-    manual_flattened = manual.flatten()
-    result_flattened = result.flatten()
+def print_metrics(result, manual):
+    try:
+        manual_flattened = manual.flatten()
+        result_flattened = result.flatten()
+    except:
+        manual_flattened = manual
+        result_flattened = result
     tn, fp, fn, tp = confusion_matrix(manual_flattened, result_flattened).ravel()
     print("Confusion matrix:\n\n{:^10}|{:^10}\n{}\n{:^10}|{:^10}\n".format(tp,fp,"-"*20,fn,tn))
     print(classification_report_imbalanced(manual_flattened, result_flattened))

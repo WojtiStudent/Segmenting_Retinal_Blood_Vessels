@@ -1,0 +1,9 @@
+models/
+best_models/
+Results/
+Results.ipynb
+data/
+all/
+__pycache__/
+*.pdf
+.ipynb_checkpoints/
