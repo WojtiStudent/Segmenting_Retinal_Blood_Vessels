@@ -2,14 +2,23 @@
 **"Computer Science in Medicine" Project (Semester 5)** <br/>
 **Authors:** [Wojciech Spychalski](https://github.com/WojtiStudent) [Mateusz Politycki](https://github.com/m-prezes)
 
-This project is about different attempts to segment retinal blood vessels from special eye photos. Data to the project was taken from https://www5.cs.fau.de/research/data/fundus-images/.
+This project is about different attempts to segment retinal blood vessels from special photos of the eye. Data for the project were taken from https://www5.cs.fau.de/research/data/fundus-images/.
 
-In each attempt images were spilt to the same train and test sets (last 6 pictures = test set).
+In each trail images were spilt in the same way into a train set and a test sets (last 6 pictures = test set).
+
+## Instalation
+A file named "requirements.txt" is attached to the repository. This file contains all required libraries to run the project. Run:
+```
+pip install requirements.txt
+```
+on the command line to install them all.
+
+
 
 ## Image Processing
 
 ### About
-In Image Processing attempt we decided to use only green channel of the images, because it delivers the most amount of information among chanenls and their combinations. Images were blured using Gaussian Blur, merged with original green channel. Then Frangi filter was used to detect vessels. After that image is normalized and thresholded to binary image. Finally we deleted small objects, did some combinations of errosion and dilation and filltered out all fragments that are not a part of the eye.
+In Image Processing trial we decided to use only green channel of the images, because it provides the most information of all channels and their combinations. The images were blurred using Gaussian Blur and combined with the original green channel. Then Frangi filter was used to detect the vessels. After that iamge was normalized and thresholded to binary image. Finally we removed small objects, performed several combinations of errosion and dilation and filtered out all fragments that are not a part of the eye.
 
 ### Scoring
 For scoring we used all metrics included in [classification_report_imbalanced](https://glemaitre.github.io/imbalanced-learn/generated/imblearn.metrics.classification_report_imbalanced.html) (precision, recall, specificity, geometric mean, index balanced accuracy of the geometric mean)
@@ -37,7 +46,7 @@ avg / total       0.96      0.96      0.64      0.96      0.78      0.63   81853
 ## Machine Learning
 
 ### About 
-This time we decided to use Machine Learning to solve the problem. The idea was to implement something like "rough convolutional network" - we went through image with 5x5 window and took some information from it (RGB mean val, RGB std, Hu moments). Then we optimized our model (XGBoostClassifier) parameters using [optuna](https://optuna.org). 
+This time we decided to use Machine Learning to solve the problem. The idea was to implement something sort of rough convolutional network - we looked at a 5x5 window image and extracted some information from it (RGB mean val, RGB std, Hu moments). Then we optimized the parameters of our model (XGBoostClassifier) using [optuna](https://optuna.org). 
 
 ### Scoring
 For scoring we used all metrics included in [classification_report_imbalanced](https://glemaitre.github.io/imbalanced-learn/generated/imblearn.metrics.classification_report_imbalanced.html) (precision, recall, specificity, geometric mean, index balanced accuracy of the geometric mean)
@@ -64,7 +73,7 @@ avg / total       0.86      0.88      0.48      0.86      0.61      0.39   16585
 ## Deep Learning
 
 ### About
-The most complex way to segment vessels was to use Deep Learing. In this attempt we used ready-to-use implementation of Unet ([segmentation models](https://segmentation-models.readthedocs.io/en/latest/tutorial.html)). To avoid overfitting we used some data augmentation from [albumentations](https://albumentations.ai) library. The entire process was done using the Keras framework. This notebook was based on other notebook: https://github.com/qubvel/segmentation_models/blob/master/examples/binary%20segmentation%20(camvid).ipynb. 
+The most complex way to segment vessels was to use Deep Learing. In this attempt we used off-the-shelf implementation of Unet ([segmentation models](https://segmentation-models.readthedocs.io/en/latest/tutorial.html)). To avoid overfitting, we used data augmentation from the [albumentations](https://albumentations.ai) library. The entire process was done using the Keras framework. This notebook was based on other notebook: https://github.com/qubvel/segmentation_models/blob/master/examples/binary%20segmentation%20(camvid).ipynb. 
 
 ### Scoring
 The model was trained using sum of DiceLoss and BinaryFocalLoss, but metrics like Intersection over Union score and F1-score were also tracked.
