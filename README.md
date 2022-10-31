@@ -1,5 +1,5 @@
 # Segmenting_Retinal_Blood_Vessels
-**"Computer Science in Medicine" Project (Semester 5)** <br/>
+**"Computer Science in Medicine" Project (Semester 6)** <br/>
 **Authors:** [Wojciech Spychalski](https://github.com/WojtiStudent) [Mateusz Politycki](https://github.com/m-prezes)
 
 This project is about different attempts to segment retinal blood vessels from special photos of the eye. Data for the project were taken from https://www5.cs.fau.de/research/data/fundus-images/.
