@@ -42,6 +42,7 @@ avg / total       0.96      0.96      0.64      0.96      0.78      0.63   81853
 
 ### Example
 ![Image_Processing](https://user-images.githubusercontent.com/72743103/198908858-2e6d55f8-9019-4156-9576-d40ddd1d6570.jpg)
+More examples and comparisons of results can be found in notebooks.
 
 ## Machine Learning
 
@@ -69,6 +70,7 @@ avg / total       0.86      0.88      0.48      0.86      0.61      0.39   16585
 ```
 ### Example
 ![MachineLearning](https://user-images.githubusercontent.com/72743103/198909500-960971b7-af44-45f0-8671-da857ac694ec.jpg)
+More examples and comparisons of results can be found in notebooks.
 
 ## Deep Learning
 
@@ -87,3 +89,4 @@ mean f1-score: 0.98031
 
 ### Example
 ![DeepLearning](https://user-images.githubusercontent.com/72743103/198910237-a028d1ed-c88c-4496-a297-28de6e8894be.jpg)
+More examples and comparisons of results can be found in notebooks.
